@@ -14,9 +14,10 @@ public class PersonaClienteJson {
 		
 	public String dameApellidoPersonaConId(int id){
 		//https://personaJson:80/damePersonaConId?ids="{ids:[1,2]}"
-		String uri = "https://"+direccionServidorPersonaJson+":"+puertoServidorPersonaJson+"/"+metodoServidorPersonaJson+"?id="+id;
+		String uri = "https://"+direccionServidorPersonaJson+":"+puertoServidorPersonaJson+"/"+metodoServidorPersonaJson;//+"?id="+id;
 		RestTemplate restTemplate = new RestTemplate();
-		Persona persona = restTemplate.getForObject(uri, Persona.class);
+		Id id1 = new Id();id1.setId(id);
+		Persona persona = restTemplate.postForObject(uri, id1, Persona.class);
 		return persona.getApellido();
 	}
 	
